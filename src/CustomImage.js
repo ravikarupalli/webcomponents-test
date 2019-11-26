@@ -2,6 +2,13 @@
 import { LitElement, html, css } from 'lit-element';
 
 class CustomImage extends LitElement {
+  constructor() {
+    super();
+    this.src = '';
+    this.alt = '';
+    this.title = '';
+  }
+
   static get properties() {
     return {
       src: { type: String },
@@ -38,7 +45,12 @@ class CustomImage extends LitElement {
 
   render() {
     return html`
-      <img src="${this.src}" alt="${this.alt}" title="${this.title}" class="thumbnail" />
+      <img
+        src="${this.src}"
+        alt="${this.alt === null ? '' : this.alt}"
+        title="${this.title === null ? '' : this.title}"
+        class="thumbnail"
+      />
     `;
   }
 
