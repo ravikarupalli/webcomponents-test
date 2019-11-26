@@ -31,9 +31,9 @@ class ImageGallery extends LitElement {
 
   displayMediumImage = event => {
     const mediumImage = this.shadowRoot.querySelector('[id="expanded-img"]');
-    mediumImage.src = event.target.__src;
-    mediumImage.alt = event.target.__alt;
-    mediumImage.title = event.target.__title;
+    mediumImage.src = event.target.src;
+    mediumImage.alt = event.target.alt;
+    mediumImage.title = event.target.title;
   };
 
   makeImageFullSize = () => {
@@ -50,16 +50,30 @@ class ImageGallery extends LitElement {
     }
   };
 
+  loadFirstImage() {
+    const imageGallery = document.querySelector('image-gallery');
+    const mediumImage = this.shadowRoot.querySelector('[id="expanded-img"]');
+    if (
+      mediumImage.src === '' &&
+      imageGallery.children[0] &&
+      imageGallery.children[0].attributes[0]
+    )
+      mediumImage.src = imageGallery.children[0].attributes[0].value;
+  }
+
   render() {
     return html`
       <div id="mediumDiv" class="medium-container">
-        <img id="expanded-img" style="width:80%; height: 450px;" @click=${this.makeImageFullSize}""
-        >
+        <img id="expanded-img" style="width:80%; height: 450px;" @click=${this.makeImageFullSize}"">
         <div id="image-list" class="image-list" @click=${this.displayMediumImage}>
           <slot></slot>
         </div>
       </div>
     `;
+  }
+
+  updated() {
+    this.loadFirstImage();
   }
 }
 

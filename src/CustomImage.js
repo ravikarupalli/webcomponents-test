@@ -25,12 +25,12 @@ class CustomImage extends LitElement {
         position: relative;
       }
 
-      .thumbnail img {
+      img {
         opacity: 0.8;
         cursor: pointer;
       }
 
-      .thumbnail img:hover {
+      img:hover {
         opacity: 1;
       }
     `;
@@ -40,6 +40,30 @@ class CustomImage extends LitElement {
     return html`
       <img src="${this.src}" alt="${this.alt}" title="${this.title}" class="thumbnail" />
     `;
+  }
+
+  get src() {
+    return this.getAttribute('src');
+  }
+
+  set src(newValue) {
+    this.setAttribute('src', newValue);
+  }
+
+  get alt() {
+    return this.getAttribute('alt');
+  }
+
+  set alt(newValue) {
+    this.setAttribute('alt', newValue);
+  }
+
+  get title() {
+    return this.getAttribute('title');
+  }
+
+  set title(newValue) {
+    this.setAttribute('title', newValue);
   }
 }
 
