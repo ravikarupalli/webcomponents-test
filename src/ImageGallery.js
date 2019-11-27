@@ -1,5 +1,6 @@
 // Import the LitElement base class and html helper function
 import { LitElement, html, css } from 'lit-element';
+import './CustomImage.js';
 
 class ImageGallery extends LitElement {
   static get styles() {
